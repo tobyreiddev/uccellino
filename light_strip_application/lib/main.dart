@@ -1,97 +1,56 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_libserialport/flutter_libserialport.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:light_strip_application/cubits/theme_cubit.dart';
+import 'package:light_strip_application/views/serial_page.dart';
 
-void main() => runApp(ExampleApp());
-
-class ExampleApp extends StatefulWidget {
-  @override
-  _ExampleAppState createState() => _ExampleAppState();
+void main() {
+  Bloc.observer = const AppBlocObserver();
+  runApp(App());
 }
 
-extension IntToString on int {
-  String toHex() => '0x${toRadixString(16)}';
-  String toPadded([int width = 3]) => toString().padLeft(width, '0');
-  String toTransport() {
-    switch (this) {
-      case SerialPortTransport.usb:
-        return 'USB';
-      case SerialPortTransport.bluetooth:
-        return 'Bluetooth';
-      case SerialPortTransport.native:
-        return 'Native';
-      default:
-        return 'Unknown';
-    }
+class AppBlocObserver extends BlocObserver {
+  const AppBlocObserver();
+
+  @override
+  void onChange(BlocBase<dynamic> bloc, Change<dynamic> change) {
+    super.onChange(bloc, change);
+    if (bloc is Cubit) print(change);
+  }
+
+  @override
+  void onTransition(
+    Bloc<dynamic, dynamic> bloc,
+    Transition<dynamic, dynamic> transition,
+  ) {
+    super.onTransition(bloc, transition);
+    print(transition);
   }
 }
 
-class _ExampleAppState extends State<ExampleApp> {
-  var availablePorts = [];
-
-  @override
-  void initState() {
-    super.initState();
-    initPorts();
-  }
-
-  void initPorts() {
-    setState(() => availablePorts = SerialPort.availablePorts);
-  }
+class App extends StatelessWidget {
+  const App({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Flutter Serial Port example'),
-        ),
-        body: Scrollbar(
-          child: ListView(
-            children: [
-              for (final address in availablePorts)
-                Builder(builder: (context) {
-                  final port = SerialPort(address);
-                  return ExpansionTile(
-                    title: Text(address),
-                    children: [
-                      CardListTile('Description', port.description),
-                      CardListTile('Transport', port.transport.toTransport()),
-                      CardListTile('USB Bus', port.busNumber?.toPadded()),
-                      CardListTile('USB Device', port.deviceNumber?.toPadded()),
-                      CardListTile('Vendor ID', port.vendorId?.toHex()),
-                      CardListTile('Product ID', port.productId?.toHex()),
-                      CardListTile('Manufacturer', port.manufacturer),
-                      CardListTile('Product Name', port.productName),
-                      CardListTile('Serial Number', port.serialNumber),
-                      CardListTile('MAC Address', port.macAddress),
-                    ],
-                  );
-                }),
-            ],
-          ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.refresh),
-          onPressed: initPorts,
-        ),
-      ),
+    return BlocProvider(
+      create: (_) => ThemeCubit(),
+      child: const AppView(),
     );
   }
 }
 
-class CardListTile extends StatelessWidget {
-  final String name;
-  final String? value;
-
-  CardListTile(this.name, this.value);
+class AppView extends StatelessWidget {
+  const AppView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: ListTile(
-        title: Text(value ?? 'N/A'),
-        subtitle: Text(name),
-      ),
+    return BlocBuilder<ThemeCubit, ThemeData>(
+      builder: (_, theme) {
+        return MaterialApp(
+          theme: theme,
+          home: const SerialPage(),
+        );
+      },
     );
   }
 }
