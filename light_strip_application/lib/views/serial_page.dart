@@ -119,51 +119,132 @@ class _SerialViewState extends State<SerialView> {
                                         CrossAxisAlignment.center,
                                     spacing: 12,
                                     children: [
-                                      ElevatedButton(
-                                          onPressed: () => {
-                                                dataContext
-                                                    .read<SerialDataBloc>()
-                                                    .add(SerialDataSend(
-                                                        port: state.port,
-                                                        data: 'RAINBOW'))
-                                              },
-                                          child: Text('RAINBOW')),
-                                      ElevatedButton(
-                                          onPressed: () => {
-                                                dataContext
-                                                    .read<SerialDataBloc>()
-                                                    .add(SerialDataSend(
-                                                        port: state.port,
-                                                        data: 'RGB,255,20,147'))
-                                              },
-                                          child: Text('PINK')),
-                                      ElevatedButton(
-                                          onPressed: () => {
-                                                dataContext
-                                                    .read<SerialDataBloc>()
-                                                    .add(SerialDataSend(
-                                                        port: state.port,
-                                                        data: 'RGB,100,0,0'))
-                                              },
-                                          child: Text('RED')),
-                                      ElevatedButton(
-                                          onPressed: () => {
-                                                dataContext
-                                                    .read<SerialDataBloc>()
-                                                    .add(SerialDataSend(
-                                                        port: state.port,
-                                                        data: 'RGB,75,0,226'))
-                                              },
-                                          child: Text('PURPLE')),
-                                      ElevatedButton(
-                                          onPressed: () => {
-                                                dataContext
-                                                    .read<SerialDataBloc>()
-                                                    .add(SerialDataSend(
-                                                        port: state.port,
-                                                        data: 'OFF'))
-                                              },
-                                          child: Text('OFF')),
+                                      Wrap(
+                                        spacing: 12,
+                                        runSpacing: 12,
+                                        children: [
+                                          ElevatedButton(
+                                              onPressed: () => {
+                                                    dataContext
+                                                        .read<SerialDataBloc>()
+                                                        .add(SerialDataSend(
+                                                            port: state.port,
+                                                            data: 'CRAINBOW'))
+                                                  },
+                                              child: Text('CRAINBOW')),
+                                          ElevatedButton(
+                                              onPressed: () => {
+                                                    dataContext
+                                                        .read<SerialDataBloc>()
+                                                        .add(SerialDataSend(
+                                                            port: state.port,
+                                                            data: 'CBREATHING'))
+                                                  },
+                                              child: Text('CBREATHING')),
+                                          ElevatedButton(
+                                              onPressed: () => {
+                                                    dataContext
+                                                        .read<SerialDataBloc>()
+                                                        .add(SerialDataSend(
+                                                            port: state.port,
+                                                            data: 'CFIRE'))
+                                                  },
+                                              child: Text('CFIRE')),
+                                          ElevatedButton(
+                                              onPressed: () => {
+                                                    dataContext
+                                                        .read<SerialDataBloc>()
+                                                        .add(SerialDataSend(
+                                                            port: state.port,
+                                                            data: 'CWAVE'))
+                                                  },
+                                              child: Text('CWAVE')),
+                                          ElevatedButton(
+                                              onPressed: () => {
+                                                    dataContext
+                                                        .read<SerialDataBloc>()
+                                                        .add(SerialDataSend(
+                                                            port: state.port,
+                                                            data: 'CTWINKLE'))
+                                                  },
+                                              child: Text('CTWINKLE')),
+                                          ElevatedButton(
+                                              onPressed: () => {
+                                                    dataContext
+                                                        .read<SerialDataBloc>()
+                                                        .add(SerialDataSend(
+                                                            port: state.port,
+                                                            data: 'CCHASE'))
+                                                  },
+                                              child: Text('CCHASE')),
+                                          ElevatedButton(
+                                              onPressed: () => {
+                                                    dataContext
+                                                        .read<SerialDataBloc>()
+                                                        .add(SerialDataSend(
+                                                            port: state.port,
+                                                            data: 'STOP'))
+                                                  },
+                                              child: Text('STOP')),
+                                          ElevatedButton(
+                                              onPressed: () => {
+                                                    dataContext
+                                                        .read<SerialDataBloc>()
+                                                        .add(SerialDataSend(
+                                                            port: state.port,
+                                                            data: 'RAINBOW'))
+                                                  },
+                                              child: Text('RAINBOW')),
+                                          ElevatedButton(
+                                              onPressed: () => {
+                                                    dataContext
+                                                        .read<SerialDataBloc>()
+                                                        .add(SerialDataSend(
+                                                            port: state.port,
+                                                            data: 'RAINBOW'))
+                                                  },
+                                              child: Text('RAINBOW')),
+                                          ElevatedButton(
+                                              onPressed: () => {
+                                                    dataContext
+                                                        .read<SerialDataBloc>()
+                                                        .add(SerialDataSend(
+                                                            port: state.port,
+                                                            data:
+                                                                'RGB,255,20,147'))
+                                                  },
+                                              child: Text('PINK')),
+                                          ElevatedButton(
+                                              onPressed: () => {
+                                                    dataContext
+                                                        .read<SerialDataBloc>()
+                                                        .add(SerialDataSend(
+                                                            port: state.port,
+                                                            data:
+                                                                'RGB,100,0,0'))
+                                                  },
+                                              child: Text('RED')),
+                                          ElevatedButton(
+                                              onPressed: () => {
+                                                    dataContext
+                                                        .read<SerialDataBloc>()
+                                                        .add(SerialDataSend(
+                                                            port: state.port,
+                                                            data:
+                                                                'RGB,75,0,226'))
+                                                  },
+                                              child: Text('PURPLE')),
+                                          ElevatedButton(
+                                              onPressed: () => {
+                                                    dataContext
+                                                        .read<SerialDataBloc>()
+                                                        .add(SerialDataSend(
+                                                            port: state.port,
+                                                            data: 'OFF'))
+                                                  },
+                                              child: Text('OFF')),
+                                        ],
+                                      ),
                                       Row(
                                         mainAxisSize: MainAxisSize.max,
                                         crossAxisAlignment:

@@ -70,7 +70,7 @@ class SerialBloc extends Bloc<SerialEvent, SerialState> {
 
       // Configure the port
       final config = SerialPortConfig();
-      config.baudRate = 9600;
+      config.baudRate = 115200;
       config.bits = 8;
       config.parity = SerialPortParity.none;
       config.stopBits = 1;
